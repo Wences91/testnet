@@ -2,7 +2,7 @@
 #' 
 #' @param edges edges data.frame
 #' @export
-#' @importFrom igraph graph_from_data_frame degree cluster_louvain layout_nicely as.undirected V E V<-
+#' @importFrom igraph graph_from_data_frame degree cluster_louvain layout_nicely as.undirected V E 'V<-'
 #' 
 
 two_mode <- function(edges){
