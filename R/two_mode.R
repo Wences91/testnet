@@ -14,7 +14,7 @@ two_mode <- function(edges){
   
   communities <- igraph::cluster_louvain(igraph::as.undirected(g))
   
-  V(g)$colors <- ifelse(substr(igraph::V(g)$name, 1, 2) == 'S-', '#add8e6', '#da86c5')
+  igraph::V(g)$colors <- ifelse(substr(igraph::V(g)$name, 1, 2) == 'S-', '#add8e6', '#da86c5')
   
   plot(communities, g, layout=igraph::layout_nicely,
        vertex.size=5, col=igraph::V(g)$colors,
