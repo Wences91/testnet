@@ -1,3 +1,6 @@
+
+[![Build Status](https://travis-ci.org/Wences91/testnet.svg?branch=master)](https://travis-ci.org/Wences91/testnet)
+
 # Test network
 
 Network analysis in test results in R
