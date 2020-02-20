@@ -3,6 +3,7 @@
 export(giant_component)
 export(obtain_edges)
 export(two_mode)
+importFrom(igraph,"V<-")
 importFrom(igraph,E)
 importFrom(igraph,V)
 importFrom(igraph,as.undirected)
