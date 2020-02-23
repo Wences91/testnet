@@ -7,7 +7,7 @@
 #' @param min_weight minimum edge weight by which to filter
 #' @param min_degree minimum node degree by which to filter
 #' @export
-#' @importFrom igraph graph_from_data_frame degree cluster_louvain layout_nicely as.undirected V E "V<-"
+#' @importFrom igraph graph_from_data_frame degree cluster_louvain layout_nicely as.undirected V E "V<-" delete_vertices
 #' 
 
 two_mode <- function(edges, size=1, label_size=1, degree_mode='in', min_weight=0, min_degree=0){
@@ -17,7 +17,7 @@ two_mode <- function(edges, size=1, label_size=1, degree_mode='in', min_weight=0
   g$indegree <- igraph::degree(g, mode = degree_mode)
   g$nsize <- size * (g$degree/sum(g$degree))
   
-  igraph::V(g) <- igraph::V(g)[g$degree >= min_degree]
+  igraph::delete_vertices(g, igraph::V(g)[g$degree >= min_degree])
   
   g <- giant_component(g)
   
