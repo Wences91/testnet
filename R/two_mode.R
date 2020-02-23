@@ -32,6 +32,6 @@ two_mode <- function(edges, size=1, edge_size=1, label_size=1, degree_mode='all'
   
   plot(communities, g, layout=l,
        vertex.size=igraph::V(g)$nsize, col=igraph::V(g)$colors, vertex.label.cex=label_size,
-       edge.width=igraph::E(g)$edge_size, edge.arrow.size=0.1, edge.arrow.width=0.2, edge.color='#00000020',
+       edge.width=igraph::E(g)$edge_size, edge.arrow.size=0, edge.arrow.width=0, edge.color='#00000020',
        rescale=FALSE, ylim=c(min(l[,2]), max(l[,2])), xlim = c(min(l[,1]), max(l[,1])))
 }
