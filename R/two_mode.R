@@ -17,7 +17,7 @@ two_mode <- function(edges, size=1, label_size=1, degree_mode='in', min_weight=0
   g$indegree <- igraph::degree(g, mode = degree_mode)
   g$nsize <- size * (g$degree/sum(g$degree))
   
-  igraph::V(g)[g$degree >= min_degree]
+  igraph::V(g) <- igraph::V(g)[g$degree >= min_degree]
   
   g <- giant_component(g)
   
