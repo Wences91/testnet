@@ -14,10 +14,10 @@ two_mode <- function(edges, size=1, label_size=1, degree_mode='in', min_weight=0
   # create two-mode network
   g <- igraph::graph_from_data_frame(edges[which(edges$weight>min_weight),], directed=TRUE)
   
-  g$indegree <- igraph::degree(g, mode = degree_mode)
+  g$degree <- igraph::degree(g, mode = degree_mode)
   g$nsize <- size * (g$degree/sum(g$degree))
   
-  igraph::delete_vertices(g, igraph::V(g)[g$degree >= min_degree])
+  g <- igraph::delete_vertices(g, which(g$degree >= min_degree))
   
   g <- giant_component(g)
   
