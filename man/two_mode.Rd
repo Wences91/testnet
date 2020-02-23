@@ -4,10 +4,14 @@
 \alias{two_mode}
 \title{two_mode}
 \usage{
-two_mode(edges)
+two_mode(edges, size = 1, degree_mode = "in")
 }
 \arguments{
 \item{edges}{edges data.frame}
+
+\item{size}{node sizes}
+
+\item{degree_mode}{which degree calculates (in, out, total)}
 }
 \description{
 two_mode
