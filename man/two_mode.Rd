@@ -4,7 +4,7 @@
 \alias{two_mode}
 \title{two_mode}
 \usage{
-two_mode(edges, size = 1, label_size = 1, degree_mode = "in",
+two_mode(edges, size = 1, label_size = 1, degree_mode = "all",
   min_degree = 0)
 }
 \arguments{
