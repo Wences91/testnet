@@ -52,5 +52,5 @@ co_fails <- function(edges, size=1, label_size=1, degree_mode='total', min_weigh
        layout=l,
        vertex.size=g$nsize, vertex.color=V(g)$colors, vertex.label.cex=label_size,
        edge.width=E(g)$weight,
-       ylim=c(min(l[,2]), max(l[,2])), xlim = c(min(l[,1]), max(l[,1])))
+       rescale=FALSE, ylim=c(min(l[,2]), max(l[,2])), xlim = c(min(l[,1]), max(l[,1])))
 }
