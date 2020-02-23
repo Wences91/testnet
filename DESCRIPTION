@@ -11,7 +11,8 @@ Imports:
     stats,
     utils,
     dplyr,
-    igraph
+    igraph,
+    ggplot2
 License: GPL-3 | file LICENSE
 URL: https://github.com/Wences91/testnet
 BugReports: https://github.com/Wences91/testnet/issues
