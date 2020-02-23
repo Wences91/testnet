@@ -9,14 +9,14 @@
 #' @importFrom igraph graph_from_data_frame degree cluster_louvain layout_nicely as.undirected V E "V<-" delete_vertices
 #' 
 
-two_mode <- function(edges, size=1, label_size=1, degree_mode='in', min_degree=0){
+two_mode <- function(edges, size=1, label_size=1, degree_mode='all', min_degree=0){
   # create two-mode network
   g <- igraph::graph_from_data_frame(edges, directed=TRUE)
   
   g$degree <- igraph::degree(g, mode = degree_mode)
   g$nsize <- size * (g$degree/sum(g$degree))
   
-  g <- igraph::delete_vertices(g, which(g$degree >= min_degree))
+  g <- igraph::delete_vertices(g, which(g$degree < min_degree))
   
   g <- giant_component(g)
   
