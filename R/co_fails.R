@@ -40,7 +40,7 @@ co_fails <- function(edges, size=1, label_size=1, degree_mode='total', min_weigh
   g$degree <- igraph::degree(g, mode='total')
   g$nsize <- size * (g$degree/sum(g$degree))
   
-  igraph::delete_vertices(g, igraph::V(g)[g$degree >= min_degree])
+  g <- igraph::delete_vertices(g, which(g$degree >= min_degree))
   g <- giant_component(g)
   
   communities <- igraph::cluster_louvain(g, weights = E(g)$Weights)
