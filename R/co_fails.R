@@ -40,7 +40,7 @@ co_fails <- function(edges, size=1, label_size=1, degree_mode='total', min_weigh
   g$degree <- igraph::degree(g, mode='total')
   g$nsize <- size * (g$degree/sum(g$degree))
   
-  igraph::V(g)[g$degree >= min_degree]
+  igraph::V(g) <- igraph::V(g)[g$degree >= min_degree]
   
   g <- giant_component(g)
   
