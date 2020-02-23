@@ -8,7 +8,7 @@
 #' @param min_degree minimum node degree by which to filter
 #' @export
 #' @importFrom dplyr inner_join mutate distinct group_by summarise
-#' @importFrom igraph graph_from_data_frame degree cluster_louvain layout_nicely as.undirected V E "V<-"
+#' @importFrom igraph graph_from_data_frame degree cluster_louvain layout_nicely as.undirected V E "V<-" delete_vertices
 #' 
 
 co_fails <- function(edges, size=1, label_size=1, degree_mode='total', min_weight=0, min_degree=0){
@@ -40,8 +40,7 @@ co_fails <- function(edges, size=1, label_size=1, degree_mode='total', min_weigh
   g$degree <- igraph::degree(g, mode='total')
   g$nsize <- size * (g$degree/sum(g$degree))
   
-  igraph::V(g) <- igraph::V(g)[g$degree >= min_degree]
-  
+  igraph::delete_vertices(g, igraph::V(g)[g$degree >= min_degree])
   g <- giant_component(g)
   
   communities <- igraph::cluster_louvain(g, weights = E(g)$Weights)
