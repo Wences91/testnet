@@ -37,8 +37,8 @@ co_fails <- function(edges, size=1, label_size=1, degree_mode='total', min_weigh
   # create co-fails network
   g <- igraph::graph_from_data_frame(cofails[which(cofails$Weight>min_weight),], directed = FALSE)
   
-  g$degree <- igraph::degree(g, mode = degree_mode)
-  g$nsize <- size * (g$degree/sum(g$degree))
+  igraph::V(g)$degree <- igraph::degree(g, mode = degree_mode)
+  igraph::V(g)$nsize <- size * (igraph::V(g)$degree/sum(igraph::V(g)$degree))
   
   g <- igraph::delete_vertices(g, which(g$degree < min_degree))
   g <- giant_component(g)
@@ -49,7 +49,7 @@ co_fails <- function(edges, size=1, label_size=1, degree_mode='total', min_weigh
   l <- igraph::layout_nicely(g)
   
   plot(communities, g, layout=l,
-       #vertex.size=igraph::V(g)$nsize, vertex.color=V(g)$colors, vertex.label.cex=label_size,
-       #edge.width=E(g)$weight,
+       vertex.size=igraph::V(g)$nsize, vertex.color=V(g)$colors, vertex.label.cex=label_size,
+       edge.width=E(g)$weight,
        rescale=FALSE, ylim=c(min(l[,2]), max(l[,2])), xlim = c(min(l[,1]), max(l[,1])))
 }
