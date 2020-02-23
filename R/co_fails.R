@@ -2,6 +2,7 @@
 #' 
 #' @param edges edges data.frame
 #' @param size node sizes
+#' @param edge_size edge sizes
 #' @param degree_mode which degree calculates (in, out, total)
 #' @param label_size text size
 #' @param min_weight minimum edge weight by which to filter
@@ -11,7 +12,7 @@
 #' @importFrom igraph graph_from_data_frame degree cluster_louvain layout_nicely as.undirected V E "V<-" delete_vertices
 #' 
 
-co_fails <- function(edges, size=1, label_size=1, degree_mode='total', min_weight=0, min_degree=0){
+co_fails <- function(edges, size=1, edge_size=1, label_size=1, degree_mode='total', min_weight=0, min_degree=0){
   
   # create co-fails matrix
   cofails <- dplyr::inner_join(x=edges, y=edges, by='source')
@@ -40,16 +41,18 @@ co_fails <- function(edges, size=1, label_size=1, degree_mode='total', min_weigh
   igraph::V(g)$degree <- igraph::degree(g, mode = degree_mode)
   igraph::V(g)$nsize <- size * (igraph::V(g)$degree/sum(igraph::V(g)$degree))
   
+  igraph::E(g)$edge_size <- edge_size * (igraph::E(g)$weight/sum(igraph::E(g)$weight))
+  
   g <- igraph::delete_vertices(g, which(igraph::V(g)$degree < min_degree))
   g <- giant_component(g)
   
   communities <- igraph::cluster_louvain(g, weights = E(g)$Weights)
-  cat('Modularity:', communities$modularity, '\n')
+  cat(length(unique(communities$membership)), 'communities | Modularity:', max(communities$modularity), '\n')
   
   l <- igraph::layout_nicely(g)
   
   plot(communities, g, layout=l,
        vertex.size=igraph::V(g)$nsize, vertex.color=V(g)$colors, vertex.label.cex=label_size,
-       edge.width=E(g)$weight,
+       edge.width=igraph::E(g)$edge_size,
        rescale=FALSE, ylim=c(min(l[,2]), max(l[,2])), xlim = c(min(l[,1]), max(l[,1])))
 }
