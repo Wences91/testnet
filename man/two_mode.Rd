@@ -5,7 +5,7 @@
 \title{two_mode}
 \usage{
 two_mode(edges, size = 1, label_size = 1, degree_mode = "in",
-  min_weight = 0, min_degree = 0)
+  min_degree = 0)
 }
 \arguments{
 \item{edges}{edges data.frame}
@@ -15,8 +15,6 @@ two_mode(edges, size = 1, label_size = 1, degree_mode = "in",
 \item{label_size}{text size}
 
 \item{degree_mode}{which degree calculates (in, out, total)}
-
-\item{min_weight}{minimum edge weight by which to filter}
 
 \item{min_degree}{minimum node degree by which to filter}
 }
