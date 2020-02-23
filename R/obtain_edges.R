@@ -2,11 +2,12 @@
 #' 
 #' @param answers response data.frame
 #' @param c_answers response template
-#' @param avoid questions to avoid
+#' @param avoid_a questions to avoid
+#' @param avoid_s students to avoid
 #' @export
 #' 
 
-obtain_edges <- function(answers, c_answers, avoid=NA){
+obtain_edges <- function(answers, c_answers, avoid_a=NA, avoid_s=NA){
   
   # transform questions into numbers
   invisible(sapply(1:dim(answers)[2], function(x){
@@ -18,8 +19,12 @@ obtain_edges <- function(answers, c_answers, avoid=NA){
   row.names(answers) <- paste0('S-',row.names(answers))
   
   # remove some questions
-  answers <- answers[,which(!(names(answers) %in% avoid)),]
-  c_answers <- c_answers[which(!(c_answers[,1] %in% avoid)),]
+  answers <- answers[,which(!(names(answers) %in% avoid_a)),]
+  c_answers <- c_answers[which(!(c_answers[,1] %in% avoid_a)),]
+  
+  # remove some students
+  avoid_s <- paste0('S-', avoid_s)
+  answers <- answers[which(!(row.names(answers) %in% avoid_s)),]
   
   # check
   all(names(answers) %in% c_answers[,1])
