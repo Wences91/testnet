@@ -44,10 +44,13 @@ co_fails <- function(edges, size=1, label_size=1, degree_mode='total', min_weigh
   g <- giant_component(g)
   
   communities <- igraph::cluster_louvain(g, weights = E(g)$Weights)
-  cat('Modularity:', communities$modularity)
+  cat('Modularity:', communities$modularity, '\n')
+  
+  l <- igraph::layout_nicely(g)
   
   plot(communities, g,
-       layout=igraph::layout_nicely,
+       layout=l,
        vertex.size=g$nsize, vertex.color=V(g)$colors, vertex.label.cex=label_size,
-       edge.width=E(g)$weight)
+       edge.width=E(g)$weight,
+       ylim=c(min(l[,2]), max(l[,2])), xlim = c(min(l[,1]), max(l[,1])))
 }
