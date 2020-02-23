@@ -48,9 +48,8 @@ co_fails <- function(edges, size=1, label_size=1, degree_mode='total', min_weigh
   
   l <- igraph::layout_nicely(g)
   
-  plot(communities, g,
-       layout=l,
-       vertex.size=g$nsize, vertex.color=V(g)$colors, vertex.label.cex=label_size,
-       edge.width=E(g)$weight,
+  plot(communities, g, layout=l,
+       #vertex.size=igraph::V(g)$nsize, vertex.color=V(g)$colors, vertex.label.cex=label_size,
+       #edge.width=E(g)$weight,
        rescale=FALSE, ylim=c(min(l[,2]), max(l[,2])), xlim = c(min(l[,1]), max(l[,1])))
 }
