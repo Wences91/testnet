@@ -4,10 +4,14 @@
 \alias{co_fails}
 \title{co_fails}
 \usage{
-co_fails(edges)
+co_fails(edges, size = 1, degree_mode = "total")
 }
 \arguments{
 \item{edges}{edges data.frame}
+
+\item{size}{node sizes}
+
+\item{degree_mode}{which degree calculates (in, out, total)}
 }
 \description{
 co_fails
