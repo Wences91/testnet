@@ -4,14 +4,16 @@
 \alias{obtain_edges}
 \title{obtain_edges}
 \usage{
-obtain_edges(answers, c_answers, avoid = NA)
+obtain_edges(answers, c_answers, avoid_a = NA, avoid_s = NA)
 }
 \arguments{
 \item{answers}{response data.frame}
 
 \item{c_answers}{response template}
 
-\item{avoid}{questions to avoid}
+\item{avoid_a}{questions to avoid}
+
+\item{avoid_s}{students to avoid}
 }
 \description{
 obtain_edges
