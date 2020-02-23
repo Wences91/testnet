@@ -16,7 +16,7 @@ two_mode <- function(edges, size=1, label_size=1, degree_mode='all', min_degree=
   igraph::V(g)$degree <- igraph::degree(g, mode = degree_mode)
   igraph::V(g)$nsize <- size * (igraph::V(g)$degree/sum(igraph::V(g)$degree))
   
-  g <- igraph::delete_vertices(g, which(g$degree < min_degree))
+  g <- igraph::delete_vertices(g, which(igraph::V(g)$degree < min_degree))
   
   g <- giant_component(g)
   
