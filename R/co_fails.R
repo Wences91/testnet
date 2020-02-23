@@ -1,12 +1,14 @@
 #' co_fails
 #' 
 #' @param edges edges data.frame
+#' @param size node sizes
+#' @param degree_mode which degree calculates (in, out, total)
 #' @export
 #' @importFrom dplyr inner_join mutate distinct group_by summarise
 #' @importFrom igraph graph_from_data_frame degree cluster_louvain layout_nicely as.undirected V E "V<-"
 #' 
 
-co_fails <- function(edges){
+co_fails <- function(edges, size=1, degree_mode='total'){
   
   # create co-fails matrix
   cofails <- dplyr::inner_join(x=edges, y=edges, by='source')
@@ -33,12 +35,14 @@ co_fails <- function(edges){
   g <- igraph::graph_from_data_frame(cofails[which(cofails$Weight>9),], directed = FALSE)
   g <- giant_component(g)
   
-  g$degree <- igraph::degree(g)
+  g$degree <- igraph::degree(g, mode='total')
+  g$nsize <- size * (g$degree/sum(g$degree))
   
   communities <- igraph::cluster_louvain(g, weights = E(g)$Weights)
+  cat(communities$modularity)
   
   plot(communities, g,
        layout=igraph::layout_nicely,
-       vertex.size=g$degree, vertex.color=V(g)$colors,
+       vertex.size=g$nsize, vertex.color=V(g)$colors,
        edge.width=E(g)$weight)
 }
