@@ -4,13 +4,15 @@
 \alias{two_mode}
 \title{two_mode}
 \usage{
-two_mode(edges, size = 1, label_size = 1, degree_mode = "all",
-  min_degree = 0)
+two_mode(edges, size = 1, edge_size = 1, label_size = 1,
+  degree_mode = "all", min_degree = 0)
 }
 \arguments{
 \item{edges}{edges data.frame}
 
 \item{size}{node sizes}
+
+\item{edge_size}{edge sizes}
 
 \item{label_size}{text size}
 
