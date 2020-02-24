@@ -4,10 +4,12 @@
 \alias{fails_dist}
 \title{fails_dist}
 \usage{
-fails_dist(edges)
+fails_dist(edges, by = "questions")
 }
 \arguments{
 \item{edges}{edges data.frame}
+
+\item{by}{the subject of the distribution (questions or students)}
 }
 \description{
 fails_dist
