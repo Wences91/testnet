@@ -10,7 +10,7 @@ fails_dist <- function(edges, by='questions'){
   if(by=='questions'){
     ggplot2::ggplot(data=edges, ggplot2::aes(reorder(target, -weight, sum), weight)) +
       ggplot2::geom_col(fill='#72bcd4') +
-      ggplot2::labs(x='Answer', y='Count') +
+      ggplot2::labs(x='Questions', y='Count') +
       ggplot2::theme_minimal() +
       ggplot2::theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
   }else if(by=='students'){
